@@ -6,7 +6,7 @@ import json
 import requests
 
 ip = 'http://api.plantix.net'
-port = 5010
+port = 80
 version = 'v1'
 route = 'image_analysis'
 
