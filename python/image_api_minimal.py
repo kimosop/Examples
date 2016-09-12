@@ -19,7 +19,7 @@ def main():
 
     # make a dict with the picture and the json
     files = {'picture': open(image,'rb'), 'json':open(json, 'rb')}
-
+    
     url = 'http://%s:%d/%s/%s' %(ip, port, version, route)
     # post both files to our API
     result = requests.get(url, files=files, headers=headers,timeout=5)
