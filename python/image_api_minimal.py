@@ -5,7 +5,7 @@
 import json
 import requests
 
-ip = 'http://api.plantix.net'
+ip = 'api.plantix.net'
 port = 80
 version = 'v1'
 route = 'image_analysis'
@@ -26,6 +26,8 @@ def main():
 
     if result.status_code == 401:
         print 'Authentication failed'
+    elif result.status_code == 500:
+        print 'Internal server error...'
     elif result.status_code == 200:
         # load response that comes in JSON format and print the result
         json_data = result.json()
