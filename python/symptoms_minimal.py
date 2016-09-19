@@ -13,7 +13,7 @@ def main():
     headers = {'api_key': '<YOUR_API_KEY>'}
     
     #Send request
-    url = "http://api.plantix.net/pathogens_spec/disease_name/%s/symptoms" %disease
+    url = "http://api.peat-cloud.com/pathogens_spec/disease_name/%s/symptoms" %disease
     req = requests.get(url,headers=headers) 
 
     #Evaluate response

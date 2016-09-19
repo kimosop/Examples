@@ -16,7 +16,7 @@ import org.apache.commons.io.IOUtils;
 import javax.imageio.ImageIO;
 
 public class ImageAPIMinimal {
-    public final static String baseUrl = "http://api.plantix.net/v1/image_analysis";
+    public final static String baseUrl = "http://api.peat-cloud.com/v1/image_analysis";
     public final static String apiKey = "<YOUR_API_KEY";
 
     private String processImage(String pathToImage, String charset) {

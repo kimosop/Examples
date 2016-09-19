@@ -5,7 +5,7 @@
 import json
 import requests
 
-ip = 'api.plantix.net'
+ip = 'api.peat-cloud.com'
 port = 80
 version = 'v1'
 route = 'image_analysis'

@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.IOUtils;
 
 public class DiseaseMinimal {
-    public final static String baseUrl = "http://api.plantix.net/diseases/";
+    public final static String baseUrl = "http://api.peat-cloud.com/diseases/";
     public final static String apiKey = "<YOUR_API_KEY>";
 
     public void sendJson(String plantName) {
