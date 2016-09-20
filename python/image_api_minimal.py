@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 #
 
+import cv2
+
 import json
 import requests
 
-ip = 'api.peat-cloud.com'
-port = 80
+ip = '0.0.0.0' #'api.peat-cloud.com'
+port = 5010 #80
 version = 'v1'
 route = 'image_analysis'
 
@@ -15,14 +17,14 @@ json = 'data/example.json'
 
 def main():
     # Header of our requst. Replace <YOUR_API_KEY> with your api key.
-    headers = {'api_key': '<YOUR_API_KEY>'}
+    headers = {'api_key': '<YOUR_API_KEY>', 'variety': 'TOMATOE'}
 
     # make a dict with the picture and the json
     files = {'picture': open(image,'rb'), 'json':open(json, 'rb')}
-    
+
     url = 'http://%s:%d/%s/%s' %(ip, port, version, route)
     # post both files to our API
-    result = requests.get(url, files=files, headers=headers,timeout=5)
+    result = requests.get(url, files=files, headers=headers,timeout=50)
 
     if result.status_code == 401:
         print 'Authentication failed'
