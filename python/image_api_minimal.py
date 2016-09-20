@@ -7,22 +7,20 @@ import cv2
 import json
 import requests
 
-ip = '0.0.0.0' #'api.peat-cloud.com'
-port = 5010 #80
+ip = 'api.peat-cloud.com'
 version = 'v1'
 route = 'image_analysis'
 
 image = 'data/iron1.jpg'
-json = 'data/example.json'
 
 def main():
     # Header of our requst. Replace <YOUR_API_KEY> with your api key.
-    headers = {'api_key': '<YOUR_API_KEY>', 'variety': 'TOMATOE'}
+    headers = {'api_key': '<YOUR_API_KEY>', 'variety': 'TOMATO'}
 
-    # make a dict with the picture and the json
-    files = {'picture': open(image,'rb'), 'json':open(json, 'rb')}
+    # make a dict with the picture
+    files = {'picture': open(image,'rb')}
 
-    url = 'http://%s:%d/%s/%s' %(ip, port, version, route)
+    url = 'http://%s/%s/%s' %(ip, version, route)
     # post both files to our API
     result = requests.get(url, files=files, headers=headers,timeout=50)
 
