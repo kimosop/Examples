@@ -1,9 +1,9 @@
 Examples
 ===
-###a collection of example scripts to access our APIs
+###a collection of example scripts and images to access our APIs
 
 
-check out **[this page](http://api.plantix.net)** for a detailled API description
+check out **[this page](http://docs.peat-api.com)** for a detailled API description
 
 
 
