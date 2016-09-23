@@ -5,6 +5,8 @@
 import os
 import requests
 
+from pw import YOUR_API_KEY
+
 ip = "api.peat-cloud.com"
 version = "v1"
 route = "image_analysis"
@@ -13,7 +15,7 @@ url = "http://%s/%s/%s" % (ip, version, route)
 
 def main():
     # Header of our requst. Replace <YOUR_API_KEY> with your api key.
-    headers = {"api_key": "<YOUR_API_KEY>", "variety": "TOMATO"}
+    headers = {"api_key": YOUR_API_KEY, "variety": "WHEAT"}
 
     # make a dict with the picture
     image = "data/tomato_nutrient/iron1.jpg"
@@ -42,8 +44,8 @@ def batch_processing(directory):
     and will iterate over every image in all subfolders of this directory
     '''
 
-    # define a header
-    headers = {"api_key": "<YOUR_API_KEY>", "variety": "TOMATO"}
+    # Header of our requst. Replace <YOUR_API_KEY> with your api key.
+    headers = {"api_key": YOUR_API_KEY, "variety": "TOMATO"}
 
     # get a list of all the subfolders
     folderlist = [x[0] for x in os.walk(directory)]
@@ -51,17 +53,22 @@ def batch_processing(directory):
     # iterate over all folder in a given directory
     for folder in folderlist:
         filelist = [i for i in os.listdir(folder) if i.endswith(".jpg")]
+
+        # iterate over all files in a given subfolder
         for f in filelist:
             filepath = os.path.join(folder, f)
             files = {"picture": open(filepath, "rb")}
             result = requests.get(url, files=files, headers=headers, timeout=10)
+
+            # all data comes in json format
             json_data = result.json()
-            
-            #just printing
+
+            # just printing
             print "filename:", f
             print "input from folder:", folder
             print "image API result:", json_data["image_analysis"][0]["name"], \
-                  json_data["image_analysis"][0]["similarity"], "\n"
+                  json_data["image_analysis"][0]["similarity"], "peat_id", \
+                  json_data["image_analysis"][0]["peat_id"], "\n"
     return
 
 
