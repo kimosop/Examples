@@ -44,7 +44,7 @@ def batch_processing(directory):
     '''
 
     # Header of our requst. Replace <YOUR_API_KEY> with your api key.
-    headers = {"api_key": YOUR_API_KEY, "variety": "TOMATO"}
+    headers = {"api_key": YOUR_API_KEY}
 
     # get a list of all the subfolders
     folderlist = [x[0] for x in os.walk(directory)]
