@@ -5,7 +5,6 @@
 import os
 import requests
 
-from pw import YOUR_API_KEY
 
 ip = "api.peat-cloud.com"
 version = "v1"
@@ -15,7 +14,7 @@ url = "http://%s/%s/%s" % (ip, version, route)
 
 def main():
     # Header of our requst. Replace <YOUR_API_KEY> with your api key.
-    headers = {"api_key": YOUR_API_KEY, "variety": "WHEAT"}
+    headers = {"api_key": YOUR_API_KEY}
 
     # make a dict with the picture
     image = "data/tomato_nutrient/iron1.jpg"
