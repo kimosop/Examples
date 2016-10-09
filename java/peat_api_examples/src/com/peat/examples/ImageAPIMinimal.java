@@ -1,94 +1,85 @@
 package com.peat.examples;
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONValue;
-
-import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-
-import org.apache.commons.io.IOUtils;
-
-import javax.imageio.ImageIO;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ImageAPIMinimal {
-    public final static String baseUrl = "http://api.peat-cloud.com/v1/image_analysis";
-    public final static String apiKey = "<YOUR_API_KEY";
+    private static final String API_KEY = "c735dc92e045233378013564d0eda4703e695efc";
+    private static final String LINE_FEED = "\r\n";
 
-    private String processImage(String pathToImage, String charset) {
-        String encodedImage = "";
-        try {
-            BufferedImage img = ImageIO.read(new File(pathToImage));
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(img, "jpg", baos);
-            baos.flush();
-            Base64.Encoder base = Base64.getEncoder();
-            encodedImage = base.encodeToString(baos.toByteArray());
-            baos.close();
-            encodedImage = java.net.URLEncoder.encode(encodedImage, charset);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return encodedImage;
-    }
+    public static void main(String[] args) throws Exception {
 
-    private String readJSON(String pathToJSON) {
-        String result = "";
-        try {
-            BufferedReader bfreader = new BufferedReader(new FileReader(new File(pathToJSON)));
-            result = bfreader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    public void sendJson(String pathToImage, String pathToJSON) {
         String charset = StandardCharsets.UTF_8.name();
-        String image = this.processImage(pathToImage, charset);
-        String reqJson = this.readJSON(pathToJSON);
-        try {
-            String url = baseUrl + "?picture=" + image + "?json=" + reqJson;
-            URLConnection connection = new URL(url).openConnection();
-            connection.setRequestProperty("api_key", apiKey);
-            connection.setRequestProperty("Accept-Charset", charset);
-            InputStream response = connection.getInputStream();
 
-            StringWriter respBuffer = new StringWriter();
-            IOUtils.copy(response, respBuffer, charset);
-            JSONObject jsonResponse = (JSONObject) JSONValue.parse(respBuffer.toString());
-            // get the status code
-            System.out.println(jsonResponse.get("code"));
-            // get the data
-            JSONArray diseases = (JSONArray) jsonResponse.get("data");
-            System.out.println(diseases.size());
+        // Your image file to upload
+        File uploadFile = new File("../../../python/data/tomato_nutrient/iron1.jpg");
+        String requestURL = "http://api.peat-cloud.com/v1/image_analysis";
 
-            for(Object json: diseases) {
-                JSONObject jsonObject = (JSONObject) json;
-                for(Object key  : jsonObject.keySet()) {
-                    StringBuilder strBuild = new StringBuilder("\t");
-                    strBuild.append(key);
-                    strBuild.append("\n");
-                    strBuild.append("\t\t");
-                    strBuild.append(jsonObject.get(key));
-                    System.out.println(strBuild.toString());
-                }
-                System.out.println("\n\n\n");
-            }
+        // Creates a unique boundary based on time stamp
+        String boundary = String.valueOf(System.currentTimeMillis());
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        // Setup http connection
+        URL url = new URL(requestURL);
+        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+        httpConn.setUseCaches(false);
+        httpConn.setDoOutput(true); // POST method
+        httpConn.setRequestProperty("User-Agent", "API Java example");
+        httpConn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+        httpConn.setRequestProperty("api_key", API_KEY);
+
+        // Setup OutputStream and PrintWriter
+        OutputStream outputStream = httpConn.getOutputStream();
+        PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream, charset), true);
+
+        // Add image file to POST request
+        String fieldName = "picture";
+        String fileName = uploadFile.getName();
+        writer.append("--" + boundary).append(LINE_FEED);
+        writer.append("Content-Disposition: form-data; name=\"" + fieldName + "\"; filename=\"" + fileName + "\"").append(LINE_FEED);
+        writer.append(LINE_FEED);
+        writer.flush();
+
+        FileInputStream inputStream = new FileInputStream(uploadFile);
+        byte[] buffer = new byte[4096];
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
         }
-    }
+        outputStream.flush();
+        inputStream.close();
 
-    public static void main(String[] args) {
-        String pathToImage = "../python/data/iron1.jpg";
-        String pathToJSON = "../python/data/example.json";
-        ImageAPIMinimal m = new ImageAPIMinimal();
-        m.sendJson(pathToImage, pathToJSON);
+        writer.append(LINE_FEED);
+        writer.flush();
+
+        // Send POST request and get response
+        List<String> response = new ArrayList<>();
+        writer.append(LINE_FEED).flush();
+        writer.append("--" + boundary + "--").append(LINE_FEED);
+        writer.close();
+
+        // Check server status message
+        int status = httpConn.getResponseCode();
+        if (status == HttpURLConnection.HTTP_OK) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    httpConn.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.add(line);
+            }
+            reader.close();
+            httpConn.disconnect();
+        } else {
+            throw new IOException("Server returned non-OK status: " + status);
+        }
+
+        // Read response
+        for (String line : response) {
+            System.out.println(line);
+        }
+
     }
 }
