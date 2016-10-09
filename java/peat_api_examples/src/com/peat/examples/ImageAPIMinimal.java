@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImageAPIMinimal {
-    private static final String API_KEY = "c735dc92e045233378013564d0eda4703e695efc";
+    private static final String API_KEY = "YOUR API KEY";
     private static final String LINE_FEED = "\r\n";
 
     public static void main(String[] args) throws Exception {
