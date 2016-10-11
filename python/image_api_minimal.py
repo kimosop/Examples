@@ -17,7 +17,7 @@ def main():
     headers = {"api_key": YOUR_API_KEY}
 
     # make a dict with the picture
-    image = "data/tomato_nutrient/iron1.jpg"
+    image = os.path.join("data", "tomato_nutrient", "iron1.jpg")
     files = {"picture": open(image, "rb")}
 
     # post both files to our API
