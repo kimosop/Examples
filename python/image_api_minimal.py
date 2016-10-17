@@ -12,9 +12,9 @@ route = "image_analysis"
 url = "http://%s/%s/%s" % (ip, version, route)
 
 
-def main():
+def single_processing():
     # Header of our requst. Replace <YOUR_API_KEY> with your api key.
-    headers = {"api_key": YOUR_API_KEY}
+    headers = {"api_key": "<YOUR_API_KEY>"}
 
     # make a dict with the picture
     image = os.path.join("data", "tomato_nutrient", "iron1.jpg")
@@ -38,13 +38,13 @@ def main():
 
 def batch_processing(directory):
     '''
-    this example is a bit more sophisticated than the simple "main" function,
+    this example is a bit more sophisticated than the simple single_processing function,
     it needs a base folder as argument
     and will iterate over every image in all subfolders of this directory
     '''
 
     # Header of our requst. Replace <YOUR_API_KEY> with your api key.
-    headers = {"api_key": YOUR_API_KEY}
+    headers = {"api_key": "<YOUR_API_KEY>"}
 
     # get a list of all the subfolders
     folderlist = [x[0] for x in os.walk(directory)]
@@ -72,5 +72,5 @@ def batch_processing(directory):
 
 
 if __name__ == "__main__":
-    main()
+    single_processing()
     batch_processing("data")
