@@ -1,0 +1,2 @@
+#!/bin/bash
+curl -H "api_key: <YOUR_API_KEY>" -H "variety: MAIZE" -F "picture=@../data/Wheat_Leaf_Rust_100059/PEAT_20160609_122425_85d9410f-5452-42da-b471-2d80a4e9d94e.jpg" "http://api.peat-cloud.com/v1/image_analysis"

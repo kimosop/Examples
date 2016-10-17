@@ -16,7 +16,7 @@ public class ImageAPIMinimal {
         String charset = StandardCharsets.UTF_8.name();
 
         // Your image file to upload
-        File uploadFile = new File("../../../python/data/tomato_nutrient/iron1.jpg");
+        File uploadFile = new File("../../../data/tomato_nutrient/iron1.jpg");
         String requestURL = "http://api.peat-cloud.com/v1/image_analysis";
 
         // Creates a unique boundary based on time stamp

@@ -17,7 +17,7 @@ def single_processing():
     headers = {"api_key": "<YOUR_API_KEY>"}
 
     # make a dict with the picture
-    image = os.path.join("data", "tomato_nutrient", "iron1.jpg")
+    image = os.path.join("..", "data", "tomato_nutrient", "iron1.jpg")
     files = {"picture": open(image, "rb")}
 
     # post both files to our API
@@ -73,4 +73,4 @@ def batch_processing(directory):
 
 if __name__ == "__main__":
     single_processing()
-    batch_processing("data")
+    batch_processing("../data")

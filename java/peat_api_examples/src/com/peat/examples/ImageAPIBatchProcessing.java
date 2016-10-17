@@ -19,8 +19,8 @@ public class ImageAPIBatchProcessing {
         ImageAPIBatchProcessing batchProcessing = new ImageAPIBatchProcessing();
 
         // Your image files to upload
-        File uploadFile = new File("../../../python/data/tomato_nutrient/iron1.jpg");
-        File anotherFile = new File("../../../python/data/tomato_nutrient/iron1.jpg");
+        File uploadFile = new File("../../../data/tomato_nutrient/iron1.jpg");
+        File anotherFile = new File("../../../data/tomato_nutrient/iron1.jpg");
 
         // Chain as many file requests as you want here
         batchProcessing.sendFile(uploadFile);
