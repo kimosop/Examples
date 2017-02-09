@@ -7,7 +7,7 @@ import requests
 
 IP = 'api.peat-cloud.com' #127.0.0.1:5000'  #'api.peat-cloud.com'
 
-    # Header of our requst. Replace <YOUR_API_KEY> with your api key.
+# Header of our requst. Replace <YOUR_API_KEY> with your api key.
 HEADER = {'api_key': '<YOUR_API_KEY>'}
 
 def single_processing():
