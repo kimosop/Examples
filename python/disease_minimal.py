@@ -11,7 +11,7 @@ def main():
 
     #Replace <YOUR_API_KEY> with your api key
     headers = {'api_key': '<YOUR_API_KEY>'}
-    url = "http://api.peat-cloud.com/diseases/%s" %plant_name
+    url = 'http://api.peat-cloud.com/diseases/%s' %plant_name
     req = requests.get(url, headers=headers) 
 
     #Evaluate response
