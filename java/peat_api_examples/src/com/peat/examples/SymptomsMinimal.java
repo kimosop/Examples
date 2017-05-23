@@ -14,13 +14,15 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.IOUtils;
 
 public class SymptomsMinimal {
-    public final static String baseUrl = "http://api.peat-cloud.com/pathogens_spec/disease_name/";
+    public final static String baseUrl = "http://api.peat-cloud.com";
     public final static String apiKey = "<YOUR_API_KEY>";
+    //Replace this with your country code. For example de, in, ..
+    public final static String language = "en";
 
-    public void sendJson(String diseaseName) {
+    public void sendJson(String diseaseID) {
         String charset = StandardCharsets.UTF_8.name();
         try {
-            String url = baseUrl + diseaseName + "/symptoms";
+            String url = baseUrl + "/disease_id/" + diseaseID + "/" + language;
             URLConnection connection = new URL(url).openConnection();
             connection.setRequestProperty("api_key", apiKey);
             connection.setRequestProperty("Accept-Charset", charset);
@@ -54,8 +56,10 @@ public class SymptomsMinimal {
     }
 
     public static void main(String[] args) {
-        String diseaseName = "Striga";
+        //The name of the disease, where we want to get the symptoms from
+        //peat_id of the disease magnesium deficiency
+        String diseaseID = "700004";
         SymptomsMinimal m = new SymptomsMinimal();
-        m.sendJson(diseaseName);
+        m.sendJson(diseaseID);
     }
 }

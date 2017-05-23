@@ -7,16 +7,16 @@ import requests
 
 def main():
     #First we need the name of the plant, from which we want to know all known diseases
-    plant_name = 'tomato'
-
+    plant_name = 'TOMATO'
+    #Replace this with your country code. For example de, in, ...
+    language = 'en'
     #Replace <YOUR_API_KEY> with your api key
     headers = {'api_key': '<YOUR_API_KEY>'}
-    url = 'http://api.peat-cloud.com/diseases/%s' %plant_name
+    url = 'http://api.peat-cloud.com/diseases/%s/%s' %(plant_name, language)
     req = requests.get(url, headers=headers) 
-
     #Evaluate response
     if req.status_code == 401:
-        print 'Authentication failed'
+        print req.text
     elif req.status_code == 200:
         data = req.text 
         print data 

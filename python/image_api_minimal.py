@@ -6,7 +6,7 @@ import os
 import requests
 
 
-IP = 'api.peat-cloud.com' #127.0.0.1:5000'  #'api.peat-cloud.com'
+IP = 'api.peat-cloud.com'
 VERSION = 'v1'
 ROUTE = 'image_analysis'
 URL = 'http://%s/%s/%s' % (IP, VERSION, ROUTE)

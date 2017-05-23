@@ -16,11 +16,13 @@ import org.apache.commons.io.IOUtils;
 public class DiseaseMinimal {
     public final static String baseUrl = "http://api.peat-cloud.com/diseases/";
     public final static String apiKey = "<YOUR_API_KEY>";
+    //Replace this with your country code. For example de, in, ... 
+    public final static String language = "en";
 
     public void sendJson(String plantName) {
         String charset = StandardCharsets.UTF_8.name();
         try {
-            String url = baseUrl + plantName;
+            String url = baseUrl + plantName + "/" + language;
             URLConnection connection = new URL(url).openConnection();
             connection.setRequestProperty("api_key", apiKey);
             connection.setRequestProperty("Accept-Charset", charset);
