@@ -1,6 +1,6 @@
-Examples
+Plantix API Examples
 ===
-###a collection of example scripts and images to access our APIs
+### A collection of example scripts and images to access our APIs
 
 
 check out **[this page](http://docs.peat-api.com)** for a detailled API description
@@ -9,7 +9,7 @@ check out **[this page](http://docs.peat-api.com)** for a detailled API descript
 
 any questions? 
 
-don't hesitate to contact rob@peat.ai
+don't hesitate to contact api@peat.ai
 
 
 
