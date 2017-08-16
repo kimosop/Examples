@@ -1,0 +1,72 @@
+{
+    "code": 200, 
+    "environment_net": [
+        {
+            "name": "bamboo forest", 
+            "rank": 1, 
+            "similarity": 84
+        }, 
+        {
+            "name": "elevator shaft", 
+            "rank": 2, 
+            "similarity": 6
+        }
+    ], 
+    "image_analysis": [
+        {
+            "eppo": "PUCCRR", 
+            "name": "Brown Rust of Rye", 
+            "peat_id": 100226, 
+            "rank": 1, 
+            "scientific_name": "Puccinia recondita f. sp. recondita", 
+            "similarity": 99
+        }, 
+        {
+            "eppo": "PUCCRT", 
+            "name": "Wheat Leaf Rust", 
+            "peat_id": 100059, 
+            "rank": 1, 
+            "scientific_name": "Puccinia triticina", 
+            "similarity": 99
+        }, 
+        {
+            "eppo": "PUCCHD", 
+            "name": "Brown Rust of Barley", 
+            "peat_id": 100214, 
+            "rank": 1, 
+            "scientific_name": "Puccinia hordei", 
+            "similarity": 99
+        }
+    ], 
+    "objects_net": [
+        {
+            "name": "ear", 
+            "rank": 1, 
+            "similarity": 19
+        }, 
+        {
+            "name": "slug", 
+            "rank": 2, 
+            "similarity": 8
+        }, 
+        {
+            "name": "sea snake", 
+            "rank": 3, 
+            "similarity": 7
+        }, 
+        {
+            "name": "obelisk", 
+            "rank": 4, 
+            "similarity": 5
+        }
+    ], 
+    "pic_id": "61ba6dac-17ad-475e-81bf-750f0235e472", 
+    "plant_net": [
+        {
+            "name": "WHEAT", 
+            "rank": 1, 
+            "similarity": 99
+        }
+    ], 
+    "recognized": true
+}
