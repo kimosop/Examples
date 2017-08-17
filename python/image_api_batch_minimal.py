@@ -15,7 +15,7 @@ URL = 'http://%s/%s/%s' % (IP, VERSION, ROUTE)
 # Header of our requst. Replace <YOUR_API_KEY> with your api key.
 HEADER = {'api_key': '<YOUR_API_KEY>'}
 
-ROOT_FOLDER = '../data/bash_example'
+ROOT_FOLDER = '../data/batch_example'
 JSON_META_FILENAME = 'meta_data.json'
 
 
