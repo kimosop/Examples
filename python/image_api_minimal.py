@@ -4,25 +4,36 @@
 
 import os
 import requests
+import logging
 
-
-IP = 'api.peat-cloud.com'
+IP = 'api-dev.peat-cloud.com' #api.peat-cloud.com
 VERSION = 'v1'
 ROUTE = 'image_analysis'
 URL = 'http://%s/%s/%s' % (IP, VERSION, ROUTE)
 
-    # Header of our requst. Replace <YOUR_API_KEY> with your api key.
-HEADER = {'api_key': '<YOUR_API_KEY>'}
+# Header of our requst. Replace <YOUR_API_KEY> with your api key. #, 'delete': True
+HEADER = {'api_key': 'c735dc92e045233378013564d0eda4703e695efc'}
+
 
 def single_processing():
 
+    import httplib as http_client
+    http_client.HTTPConnection.debuglevel = 1
+
+    # You must initialize logging, otherwise you'll not see debug output.
+    logging.basicConfig()
+    logging.getLogger().setLevel(logging.DEBUG)
+    requests_log = logging.getLogger("requests.packages.urllib3")
+    requests_log.setLevel(logging.DEBUG)
+    requests_log.propagate = True
+
     # make a dict with the picture
-    image = os.path.join('..', 'data', 'tomato_nutrient', 'iron1.png')
+    image = os.path.join('..', 'data', 'tomato_nutrient', 'healthy_640x480.png')
     files = {"picture": open(image, 'rb')}
 
     # post both files to our API
     result = requests.get(URL, files=files, headers=HEADER, timeout=200000)
-
+    print result
     if result.status_code == 401:
         print 'Authentication failed'
     elif result.status_code == 500:
@@ -70,4 +81,4 @@ def batch_processing(directory):
 
 if __name__ == '__main__':
     single_processing()
-    batch_processing('../data')
+    # batch_processing('../data')
