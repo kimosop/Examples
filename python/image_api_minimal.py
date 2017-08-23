@@ -17,16 +17,6 @@ HEADER = {'api_key': '<YOUR_API_KEY>'}
 
 def single_processing():
 
-    import httplib as http_client
-    http_client.HTTPConnection.debuglevel = 1
-
-    # You must initialize logging, otherwise you'll not see debug output.
-    logging.basicConfig()
-    logging.getLogger().setLevel(logging.DEBUG)
-    requests_log = logging.getLogger("requests.packages.urllib3")
-    requests_log.setLevel(logging.DEBUG)
-    requests_log.propagate = True
-
     # make a dict with the picture
     image = os.path.join('..', 'data', 'tomato_nutrient', 'healthy_640x480.png')
     files = {"picture": open(image, 'rb')}
