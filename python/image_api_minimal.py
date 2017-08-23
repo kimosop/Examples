@@ -6,13 +6,13 @@ import os
 import requests
 import logging
 
-IP = 'api-dev.peat-cloud.com' #api.peat-cloud.com
+IP = 'api.peat-cloud.com'
 VERSION = 'v1'
 ROUTE = 'image_analysis'
 URL = 'http://%s/%s/%s' % (IP, VERSION, ROUTE)
 
-# Header of our requst. Replace <YOUR_API_KEY> with your api key. #, 'delete': True
-HEADER = {'api_key': 'c735dc92e045233378013564d0eda4703e695efc'}
+# Header of our requst. Replace <YOUR_API_KEY> with your api key. #
+HEADER = {'api_key': '<YOUR_API_KEY>'}
 
 
 def single_processing():
