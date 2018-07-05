@@ -13,10 +13,10 @@ don't hesitate to contact api@peat.ai
 
 
 
-PEAT
+PEAT GmbH
 
-Schwarzer Bär 1
+Kastanienalle 4
 
-30449 Hannover
+10435 Berlin
 
 http://peat.ai
